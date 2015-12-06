@@ -23,9 +23,11 @@ namespace Inventario
 
         public static string ObtenerString()
         {
+            //obtengo la casdena de conexión a la base de datos
             return Settings.Default.InventarioConnectionString;
         }
 
+        //obtengo el nombre de la tabla que se va a utilizar
         public ConexionBD(string nombTable)
         {
             nomTable = nombTable;
@@ -33,17 +35,20 @@ namespace Inventario
 
         SqlConnection Conexion;
 
+        //conecto a la base de datos
         public void Conectar()
         {
             Conexion = new SqlConnection(ObtenerString());
             Conexion.Open();
         }
 
+        //desconecto de la base de datos
         public void Desconectar()
         {
             Conexion.Close();
         }
 
+        //metodo para ejecutar una consuta
         public void EjecutarSQL(String Query)
         {
             try
@@ -70,6 +75,7 @@ namespace Inventario
             //Desconectar();
         }
 
+        //metodo para realizar alguna comparación 
         public void Comparacion(string Comando)
         {
             SqlCommand comm = new SqlCommand(Comando, Conexion);
@@ -81,6 +87,7 @@ namespace Inventario
             }
         }
 
+        //metodo para ver datos en el DataGridView
         public void ActualizarGrid(DataGridView dg, String Query)
         {
             //crea DataSet

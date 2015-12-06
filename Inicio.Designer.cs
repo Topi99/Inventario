@@ -43,7 +43,7 @@
             this.btnInicio.Location = new System.Drawing.Point(76, 147);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(124, 53);
-            this.btnInicio.TabIndex = 0;
+            this.btnInicio.TabIndex = 2;
             this.btnInicio.UseVisualStyleBackColor = true;
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
@@ -70,7 +70,7 @@
             this.txtUser.Location = new System.Drawing.Point(123, 60);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(100, 20);
-            this.txtUser.TabIndex = 3;
+            this.txtUser.TabIndex = 0;
             // 
             // txtPass
             // 
@@ -78,7 +78,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(100, 20);
-            this.txtPass.TabIndex = 4;
+            this.txtPass.TabIndex = 1;
             // 
             // Inicio
             // 
@@ -93,6 +93,7 @@
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

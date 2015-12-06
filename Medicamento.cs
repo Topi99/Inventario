@@ -14,7 +14,7 @@ namespace Inventario
 
         public void Conectar()
         {
-            Conexion = new SqlConnection("Data Source=TOPIPC;Initial Catalog=Inventario;Integrated Security=True");
+            Conexion = new SqlConnection(ConexionBD.ObtenerString());
             Conexion.Open();
         }
 

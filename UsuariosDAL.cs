@@ -12,7 +12,7 @@ namespace Inventario
         public static int CrearCuentas(string pUser, string pPass)
         {
             int res = 0;
-            SqlConnection Conn = new SqlConnection("Data Source = TOPIPC; Initial Catalog = Inventario; Integrated Security = True");
+            SqlConnection Conn = new SqlConnection(ConexionBD.ObtenerString());
             Conn.Open();
             SqlCommand Comm = new SqlCommand(string.Format("Insert into Users Values('{0}', PwdEncrypt('{1}'))", pUser, pPass), Conn);
 

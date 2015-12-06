@@ -16,7 +16,7 @@ namespace Inventario
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -25,7 +25,8 @@ namespace Inventario
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {
+        {   
+            //MessageBox.Show("¿Seguro que desea salir?", "Confirmar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             Application.Exit();
         }
 
@@ -33,6 +34,41 @@ namespace Inventario
         {
             email em = new email();
             em.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Productos prod = new Productos();
+            prod.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Clasificaciones clas = new Clasificaciones();
+            clas.Show();
+            this.Close();
+        }
+
+        private void cerrarSeciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Inicio inicio = new Inicio();
+            MessageBox.Show("Seción cerrada", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            inicio.Show();
+            this.Close();
+            Inicio.Iniciado = false;
+        }
+
+        private void medicamentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Medicamentos med = new Medicamentos();
+            med.Show();
+            this.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

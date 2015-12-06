@@ -47,18 +47,33 @@ namespace Inventario
 
         private void Medicamentos_Load(object sender, EventArgs e)
         {
+            DateTime fecha = DateTime.Now;
+            int margenDias = fecha.Day - 15;
+            //DateTime margenFecha = DateTime.Parse(string.Format("{0}/{1}/{2} {3}:{4}:{5}", margenDias, fecha.Month, fecha.Year, fecha.Hour, fecha.Minute, fecha.Second)); 
+            DateTime margenFecha = new DateTime(fecha.Year, fecha.Month-1, fecha.Day);
             editar = false;
+            if(Inicio.User!="Admin")
+            {
+                btnNew.Enabled = false;
+                btnDelete.Enabled = false;
+                btnEditar.Enabled = false;
+            }
             med.ActualizarGrid(this.dataGridView1, "select * from Medicamentos");
+            ConexionBD conn = new ConexionBD("Medicamentos");
+            conn.Conectar();
+            conn.Comparacion(string.Format("select * from Medicamentos where FechCad <= '{0}'", margenFecha));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            btnNew.Enabled = true;
+            btnGuardar.Enabled = false;
             try
             {
                 switch (cbClass.Text)
                 {
                     case "NEUROLOGÍA":
-                        classi = 1;
+                        classi = 5;
                         break;
                     case "ANTIMICROBIANOS":
                         classi = 2;
@@ -129,13 +144,15 @@ namespace Inventario
         private void button4_Click(object sender, EventArgs e)
         {
             editar = true;
-
+            btnGuardar.Enabled = true;
+            btnGuardar.Cursor = Cursors.Hand;
+            btnNew.Enabled = false;
             txtNombre.Text = this.dataGridView1.CurrentRow.Cells[1].Value.ToString();
             int classif = int.Parse(this.dataGridView1.CurrentRow.Cells[3].Value.ToString());
             string clas=null;
             switch (classif)
             {
-                case 1:
+                case 5:
                     clas = "NEUROLOGÍA";
                     break;
 

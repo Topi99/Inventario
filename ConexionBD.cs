@@ -14,6 +14,13 @@ namespace Inventario
     {
         string nomTable;
 
+        /*public static SqlConnection obtenetConexion()
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.Conectar);
+            conn.Open();
+            return conn;
+        }*/
+
         public static string ObtenerString()
         {
             return Settings.Default.InventarioConnectionString;
@@ -61,6 +68,17 @@ namespace Inventario
                 MessageBox.Show("No se pudo realizar la operación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //Desconectar();
+        }
+
+        public void Comparacion(string Comando)
+        {
+            SqlCommand comm = new SqlCommand(Comando, Conexion);
+            SqlDataReader reader = comm.ExecuteReader();
+
+            while (reader.Read())
+            {
+                MessageBox.Show("Uno o varios medicamentos están por caducarse", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         public void ActualizarGrid(DataGridView dg, String Query)

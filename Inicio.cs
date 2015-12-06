@@ -17,10 +17,15 @@ namespace Inventario
             InitializeComponent();
         }
 
-        private void btnInicio_Click(object sender, EventArgs e)
+        public static string User;
+        public static bool Iniciado = false;
+
+        public void iniciar()
         {
-            if(UsuariosDAL.Autentificar(txtUser.Text, txtPass.Text) > 0)
+            User = this.txtUser.Text;
+            if (UsuariosDAL.Autentificar(txtUser.Text, txtPass.Text) > 0)
             {
+                Iniciado = true;
                 Form1 main = new Form1();
                 main.Show();
                 this.Hide();
@@ -28,7 +33,19 @@ namespace Inventario
             else
             {
                 MessageBox.Show("Error al iniciar seción", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUser.Text = null;
+                txtPass.Text = null;
+                txtUser.Focus();
             }
+        }
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            iniciar();
+        }
+
+        private void Inicio_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
